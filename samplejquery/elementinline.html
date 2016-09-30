@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+<style>
+    body { display: block; font-size:16px;line-height: 3.6em; text-align: center;
+
+    }
+  div.outer{
+       border: 1px solid #ff8c00;
+       margin: 0.7em 0.75em 0.7em;
+       padding: 0.5em 1em 1.5em;;
+       width: 20em;
+       height: 5em;
+       background: #777777;
+       word-wrap:break-word;
+       overflow:hidden;
+       text-overflow:ellipsis;
+      color: #ff4a22;
+
+    }
+    div.inter{
+        border: 1px solid #e0ffe9;
+        margin: 0.7em 0.75em 0.7em;
+        padding: 0.5em 1em 1.5em;;
+        width: 8em;
+        height: 1em;
+        background: #5fff1b;
+        word-wrap:break-word;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        color: #ff4a22;
+
+    }
+    div.inter.inline{
+        border: 1px solid #e0ffe9;
+        margin: 0.7em 0.75em 0.7em;
+        padding: 0.5em 1em 1.5em;;
+        width: 8em;
+        height: 1em;
+        background: #5fff1b;
+        word-wrap:break-word;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display: inline;
+        color: #fff3e9;
+        vertical-align: middle;
+    }
+    .cell{
+        vertical-align: middle;
+        display:table-cell;
+    }
+    .table{
+        display:table;
+    }
+    button{
+        width: 20em;
+        height: 5em;
+
+    }
+    .button{
+        width: 20em;
+        height: 5em;
+
+    }
+    span{
+        display: inline-block;
+        border: dotted red;
+        width: 20em;
+        height: 3.75em;
+    }
+
+</style>
+</HEAD>
+<BODY >
+    <span>aa</span>
+    <button>myButton</button>
+    <input type="submit" class="button" value="Submit">
+    <span>cc</span>
+    <div class="outer">
+        <div class="inter inline">a</div>
+        <div class="inter inline">b</div>
+    </div>
+    <div class="outer table">
+        <div class="inter cell" >c</div>
+        <div class="inter cell"></div>
+    </div>
+    <div class="outer">
+
+    </div>
+</BODY>
+</HTML>
+
+
+

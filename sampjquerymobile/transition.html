@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="./Bootstrap.css">
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>页面过渡效果</title>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+    <div data-role="header">
+        <h1>欢迎来到我的主页</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <p>点击链接查看淡入效果。</p>
+        <a href="#pagetwo" data-transition="fade">淡入对话框页面</a>
+    </div>
+
+    <div data-role="footer">
+        <h1>底部文本</h1>
+    </div>
+</div>
+
+<div data-role="page" data-dialog="true" id="pagetwo">
+    <div data-role="header">
+        <h1>我是一个对话框！</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <p>点击链接跳转到第一个页面。 <b>注意</b>: 淡入（fade）是默认的。</p>
+        <a href="#pageone">跳转到第一个页面</a>
+        <p><b>提示是：</b> 你可以通过点击顶部的 X 按钮来关闭对话框。它将自动过渡回前一个页面，与淡入的效果一致。</p>
+    </div>
+
+    <div data-role="footer">
+        <h1>对话框底部文本</h1>
+    </div>
+</div>
+
+</body>
+</html>

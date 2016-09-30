@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+  <meta charset="UTF-8">
+	<title>Restaurant Picker</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="../css/jquery.mobile-1.4.5.css">
+
+		<script src="/build/jquery-2.2.2.js"></script>
+		<script src="../external/jquery-mobile/jquery.mobile-1.4.5.js"></script>
+		<!--
+		<script src="../external/requirejs/require.js"></script>
+		<script src="js/requirejs.config.js"></script>
+		-->
+</head>
+
+<body>
+
+<div data-role="page" id="home">
+
+	<div data-role="header">
+		<h1>Home</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-transition="none"  class="ui-btn-active ui-state-persist">Home</a></li>
+				<li><a href="#b" data-transition="none" >Credits</a></li>
+				<li><a href="#c" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div data-role="content">
+		<p>
+			This is the Home Page
+		</p>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-id="footernav">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home"  data-transition="none" class="ui-btn-active">Home</a></li>
+				<li><a href="#b" data-transition="none" >Credits</a></li>
+				<li><a href="#c" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+
+<div data-role="page" id="b">
+
+	<div data-role="header">
+		<h1>Home</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-transition="none" >Home</a></li>
+				<li><a href="#b" data-transition="none" data-transition="none" >Credits</a></li>
+				<li><a href="#c" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div data-role="content">
+		<p>
+			This is the Credits Page
+		</p>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-id="footernav">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-transition="none" >Home</a></li>
+				<li><a href="#b" class="ui-btn-active" data-transition="none" >Credits</a></li>
+				<li><a href="#c" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<div data-role="page" id="c">
+
+	<div data-role="header">
+		<h1>Home</h1>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-transition="none" >Home</a></li>
+				<li><a href="#b" data-transition="none" >Credits</a></li>
+				<li><a href="#c" class="ui-btn-active" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div data-role="content">
+		<p>
+			This is the Contact Page
+		</p>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-id="footernav">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-transition="none" >Home</a></li>
+				<li><a href="#b" data-transition="none" >Credits</a></li>
+				<li><a href="#c"  class="ui-btn-active" data-transition="none" >Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

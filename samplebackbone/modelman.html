@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Backbone.js Todos</title>
+  <link rel="stylesheet" href="todos.css"/>
+</head>
+
+<body>
+
+<button id="check">报到</button>
+<a href="#actions">testActions</a>
+<p>
+  <a href="#/posts/120">Post 120</a>
+</p>
+<p>
+<a href="#/download/user/images/hey.gif">download gif</a>
+  </p>
+<p>
+<a href="#/dashboard/graph">Load Route/Action View</a>
+</p>
+
+<ul id="world-list">
+</ul>
+
+
+  <script src="/build/jquery-2.2.2.js"></script>
+  <script src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script>
+  <script src="/build/backbone-1.3.3/backbone.js"></script>
+
+  </body>
+
+<script>
+  (function ($) {
+    Man=Backbone.Model.extend({
+      initialize:function(){
+        console.log('Hey, you create me!');
+        //初始化时绑定监听
+        this.bind("change:name",function(){
+          var name=this.get("name");
+          console.log("你改变了name属性为："+name);
+        });
+        this.bind("error",function(model,error){
+          console.log(error);
+        });
+      },
+      defaults:{//直接定义，设置默认值
+        name:'张三',
+        age:'38'
+    },
+     aboutMe: function(){//对象中的方法
+        return'我叫'+ this.get('name')+',今年'+ this.get('age')+'岁';
+     },
+      validate:function(attributes,options){
+        if(attributes.name==''){
+          return"name不能为空！";
+        }
+      },
+  });
+
+  var man=new Man;//var man=new Man()
+    console.log(man.get('name'));
+  //赋值时定义
+  //触发绑定的change事件
+  man.set({name:'the5fire',age:'10'});
+  console.log(man.get('name'));
+
+   man.set({name:''});//根据验证规则，弹出错误提示。
+
+    var AppRouter=Backbone.Router.extend({
+      routes:{
+        "posts/:id":"getPost",//一种是用“:”来把#后面的对应的位置作为参数
+        //"*actions":"defaultRoute",//是“*”，它可以匹配所有的url
+        "download/*path":"downloadFile",//对应的链接为<a href="#/download/user/images/hey.gif">download gif</a>
+        ":route/:action":"loadView", //对应的链接为<a href="#/dashboard/graph">Load Route/ActionView</a>
+      },
+      defaultRoute:function(actions){
+        console.log(actions);
+      },
+      getPost:function(id){
+        console.log(id);
+      },
+      downloadFile:function(path){
+        console.log(path);// user/images/hey.gif
+      },
+      loadView:function(route,action){
+        console.log(route+"_"+action);// dashboard_graph
+      }
+    });
+
+    var app_router=new AppRouter;
+    //初始化Router
+    Backbone.history.start();
+  })(jQuery);
+</script>
+</html>

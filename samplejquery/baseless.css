@@ -1,0 +1,11 @@
+.clearfix:before,
+.clearfix:after,
+.container-fixed:before,
+.container-fixed:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+.container-fixed:after {
+  clear: both;
+}

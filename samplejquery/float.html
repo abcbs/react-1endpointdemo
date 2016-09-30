@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <STYLE type="text/css">
+        /**
+        BODY, P, IMG { margin: 2em }
+        **/
+        img.icon {
+            float: left;
+            margin-left: 1em;
+            border: dashed #ceff35;
+        }
+        p.padding{
+            border: dotted;
+            padding: 1em;
+            clear: left
+        }
+
+        div.item {
+            font-size: 14px;
+            text-align: left;;
+            border: 1px solid;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-top: 1em ;
+            width:20em;
+            margin-right: 8em ;
+            line-height: 2em;
+
+        }
+        div.item img {
+            float: left;
+            margin-top: -1em;
+            margin-left:1em;
+            padding-right: 1em;
+            width: 5em;
+            height: 5em;
+            padding-top: 1em;
+
+        }
+        /**
+        div.item {border: 1px solid; padding: 5px;}
+        div.item img {float: left; margin: 5px;}
+        **/
+        div.clearer {
+            clear: left;
+        }
+        .clearfix:before,
+        .clearfix:after {
+            content:"";
+            display:table;
+        }
+        .clearfix:after {
+            clear:both;
+            overflow:hidden;
+        }
+        .clearfix {
+            zoom:1; /* IE < 8 */
+        }
+
+        .demo {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #dec3ff;
+        }
+        .demotop {
+            width: 600px;
+            height: 40px;
+            border: 1px solid #4eaa2d;
+        }
+        .demoFloat {
+            background: #e2f432;
+            margin: 0;
+        }
+        .demoC {
+            background: orange;
+        }
+        .demoD {
+            background: lime;
+            border: 2px solid blue;
+        }
+
+        .demoB {
+            float: left;
+        }
+        .demoC {
+            float: right;
+        }
+        .demoD {
+            float: left;
+        }
+        .clear {
+            clear:both;/*主要使用这个属性来清除浮动*/
+            /*为了不让ie具有一定的空间，个人建议加上下面三个属性*/
+            height: 0;
+            line-height: 0;
+            font-size: 0;
+
+        }
+        .A {
+            overflow: hidden;
+            zoom: 1;/*在ＩＥ下触发其layout，也要以使用_height:1%来代替zoom*/
+        }
+
+        .divfloat{
+            border: 1px dotted darkorange;
+            background: #2fd2ce;
+            color: yellow;
+          }
+        .da{
+            width: 40px;
+            height: 80px;
+            background: chocolate;
+        }
+        .db{
+            width: 140px;
+            height: 80px;
+            background: #5fd247;
+        }
+        .dc{
+            background: #3a77d2;
+            width: 60px;
+            height: 60px;
+        }
+        .dd{
+            background: #645d53;
+            width: 120px;
+            height: 60px;
+        }
+        .ftop{
+            //float:right;
+            loat:left;
+        }
+        .fa{
+            //float:right;
+            //float:left;
+        }
+        .fb{
+            //float:right;
+            //float:left;
+        }
+        .fc{
+            //float:right;
+            //float:left;
+        }
+        .fd{
+            float:right;
+        }
+        .fe{
+            //float:right;
+        }
+        .ff{
+            //float:right;
+            //float:left;
+        }
+        .f3{
+            float:right;
+        }
+        .f4{
+            float:right;
+        }
+        .f14{
+            float:right;
+            //float:left;
+        }
+    </STYLE>
+</HEAD>
+<BODY>
+
+<div class="divfloat ftop">
+
+    <div class="divfloat da fa">a</div>
+    <div class="divfloat db fb">b</div>
+    <div class="divfloat dc fc">c</div>
+
+        <div class="divfloat dd fd">d</div>
+        <div class="divfloat dd f1">1</div>
+        <div class="divfloat  f2">2</div>
+        <div class="divfloat  f3">3</div>
+        <div class="divfloat  f4">4</div>
+        <div class="divfloat  f5">5</div>
+        <div class="divfloat  f6">6</div>
+        <div class="divfloat  f7">7</div>
+
+    <div class="divfloat  f8">8</div>
+    <div class="divfloat  f9">9</div>
+    <div class="divfloat  f9">11</div>
+    <div class="divfloat  f9">12</div>
+    <div class="divfloat  f9">13</div>
+    <div class="divfloat  f14">14</div>
+
+</div>
+<div class="divfloat fe">e</div>
+<div class="divfloat ff">f</div>
+<!--
+<div class="demotop A">
+    <div class="demo demoB demoFloat">float left B</div>
+    <div class="demo demoC demoFloat">float right C</div>
+    <div class="demo demoD demoFloat">not float D</div>
+
+</div>
+
+
+<div class="item">
+    <img src="nems.jpg" >
+    <span> Widget 6144
+    <br>$39.95
+    </span>
+
+    <div class="clearer"> </div>
+</div>
+<div class="item">
+    <img src="nems.jpg" alt="" />
+    Widget 6145
+    <br>$44.95
+    <div class="clearer"> </div>
+</div>
+
+<P class="padding">
+    Some sample text that has no other Some sample text that has no other
+    Some sample text that has no other Some sample text that has no other
+    Some sample text that has no other Some sample text that has no other
+    Some sample text that has no other Some sample text that has no other.
+    <IMG  class="icon" src=nems.jpg>
+    that has no other  that has no other  that has no other
+ </P>
+
+<P class="padding">
+    that has no other  that has no other  that has no other
+    that has no other  that has no other  that has no other
+    that has no other  that has no other  that has no other
+
+</P>-->
+</BODY>
+</HTML>
+
+

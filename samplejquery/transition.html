@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        #panel,
+        #flip,
+        #slideUp,
+        #slideToggle
+        {
+            padding:5px;
+            text-align:center;
+            background-color:#e5eecc;
+            border:solid 1px #c3c3c3;
+        }
+        #panel
+        {
+            padding:50px;
+            display:none;
+        }
+    </style>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet/less"
+          type="text/css" href="../build/bootstrap-3.3.7/less/bootstrap.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
+
+    <title>Navbar Template for Bootstrap</title>
+
+   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div style="margin: 10%">
+    <h1>触发器示例</h1>
+    <button id="triggerIds">点隐藏</button>
+    <div id="div0" >div1</div>
+    <div id="footrigger" >footrigger</div>
+    <div id="foo" >foo</div>
+    <h1>动画示例</h1>
+    <h2>这是一个标题</h2>
+    <p>这是一个段落。</p>
+    <p>这是另一个段落。</p>
+
+    <button id="hiddenId">点隐藏</button>
+    <div><button id="showId">显示</button></div>
+    <div><button id="toggleId">显示</button></div>
+    <h1>动画</h1>
+    <div><button id="fadeIn">显示</button></div>
+    <div><button id="fadeOut">淡出</button></div>
+    <div><button id="fadeToggle">淡出/淡入</button></div>
+    <div><button id="fadeTo">透明度</button></div>
+
+    <div id="div1" >div1</div>
+    <div id="div2" >div1</div>
+    <div id="div3" >div1</div>
+
+    <h1>显示隐藏</h1>
+    <div><button id="flip">下滑动元素</button></div>
+    <div><button id="slideUp">上滑动元素</button></div>
+    <div><button id="slideToggle">上/下滑动切换</button></div>
+    <p id="panel">YYYYYYYYYYYYYYY></p>
+
+    <h1>动画</h1>
+    <div><button id="animateId">自定义动画</button></div>
+    <div><button id="animateMultId">自定义动画</button></div>
+    <p>默认情况下，所有的 HTML 元素有一个静态的位置，且是不可移动的。
+        如果需要改变为，我们需要将元素的 position 属性设置为 relative, fixed, 或 absolute!</p>
+    <p id="animateP" style="background:#98bf21;height:100px;width:100px;position:absolute;">YYYYYYYYYYYYYYY></p>
+
+    <p><div id="tree">Tree</div></p>
+
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../build/jquery-2.2.2.js"></script>
+<!--
+<script src="../../build/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+-->
+<script src="../build/bootstrap-3.3.7/js/collapse.js"></script>
+<!--
+<script src="samplejquery.js"></script>
+-->
+<script src="namespace.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        #parent {
+            margin: 100px auto 0 auto;
+            width: 600px;
+            height: 200px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .log {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        #btns {
+            margin: 20px auto 0 auto;
+            width: 600px;
+        }
+    </style>
+
+
+    <title>Navbar Template for Bootstrap</title>
+
+   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../build/jquery-2.2.2.js"></script>
+<!--
+<script src="samplejquery.js"></script>
+-->
+<script src="namespace.js"></script>
+<div id="parent">
+    <div class="log"></div>
+</div>
+<div id="btns">
+    <button id="btn1" type="button" onclick="$p.trigger('click.n1.n2.n3.n4');">trigger('click.n1.n2.n3.n4')</button>
+    <button id="btn2" type="button" onclick="$p.trigger('click.n1.n2.n3');">trigger('click.n1.n2.n3')</button>
+    <button id="btn3" type="button" onclick="$p.trigger('click.n1.n2');">trigger('click.n1.n2')</button>
+    <button id="btn4" type="button" onclick="$p.trigger('click.n1');">trigger('click.n1')</button>
+    <button id="btn5" type="button" onclick="$p.trigger('click');">trigger('click')</button>
+</div>
+
+<script>
+    function log($e, msg) {
+        var $log = $e.find('.log');
+        $log.append('<p>' + msg + '</p>');
+    }
+
+    var $p = $('#parent');
+
+    $p.on('click.n1.n2.n3.n4', function(){
+        log($p, 'click n1 n2 n3 n4');
+    });
+    $p.on('click.n1.n2.n3', function(){
+        log($p, 'click n1 n2 n3');
+    });
+    $p.on('click.n1.n2', function(){
+        log($p, 'click n1 n2');
+    });
+    $p.on('click.n1', function(){
+        log($p, 'click n1');
+    });
+    $p.on('click', function(){
+        log($p, 'click');
+    });
+
+</script>
+
+</body>
+</html>
