@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <HEAD>
+        <TITLE>Examples of margins, padding, and borders</TITLE>
+        <STYLE type="text/css">
+            body{
+                background: #cc3dc9;
+                font-style: italic;
+                color: #f6f9ff;
+             }
+            div.out-systle{
+                border-top-style:dashed;
+                border-top-width:2em;
+                border-top-color: #ee4e9c;
+
+                border-bottom-style:dashed;
+                border-bottom-width:1em;
+                border-bottom-color: #ff4a22;
+
+                border-right: 2em dotted #fff64b;
+                border-left: 2em dotted #ffec4b;
+
+                outline:2px solid #ff3afd;
+            }
+            div.inner-systle{
+                border-top-style:dashed;
+                border-top-width:2em;
+                border-top-color: #00b3ee;
+
+                border-bottom-style:dashed;
+                border-bottom-width:1em;
+                border-bottom-color: #ff4a22;
+
+                border-right: 2em dotted #c5ff1f ;
+                border-left: 2em dotted #fcffc2;
+
+                outline:2px solid #fffbf5;
+            }
+            div:after{
+
+            }
+            div.outer-boxes {
+                background: #2d72cc;
+                padding-top: 2em;
+                padding-bottom: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+                margin-right: 2em ;
+                margin-left: 2em ;
+            }
+
+            div.inner-boxes{
+                background: #b8b9cc;
+                //
+                padding-top: 2em;
+                padding-bottom: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+
+                margin-right: 2em ;
+                margin-left: 2em ;
+                text-align: center;
+
+            }
+
+            span{
+                padding-top: 1em;
+                padding-bottom: 1em;
+                padding-left: 2em;
+                padding-right: 4em;
+
+                margin-right: 2em ;
+                margin-left: 2em ;
+
+                background: #ffcd13;
+                background-origin: border-box;
+
+                outline:2px solid #baff18;
+
+                border-style:dotted;
+                border-width:6px;
+                border-color: #5917ee;
+                min-width: 4em;
+                width: 16em;
+
+            }
+            p{
+                padding-top: 1em;
+                padding-bottom: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+
+                margin-right: 1em ;
+                margin-left: 1em ;
+
+                outline:4px double #fffbf5;
+
+                border-style:dotted;
+                border-width:6px;
+                border-color: #4ceecc;
+
+                background: palevioletred;
+            }
+
+            div.outer-boxes.outer-boxes-margin{
+                margin-top: 1em;
+                margin-bottom: 2em;
+                overflow:visible;
+                outline-offset:1em;
+                width: 70em;
+                //display: table;
+            }
+            div.inner-boxes.inner-margin{
+                margin-top: 2em;
+                margin-bottom: 1em;
+                overflow:visible;
+                outline-offset:1em;
+                width: 60em;
+                //display: table-cell;
+            }
+            span.out-margin{
+                display:inline-block;
+                margin-top: 2em;
+                margin-bottom: 2em;
+                overflow:visible;
+                outline-offset:1em;
+             }
+            p.out-margin{
+                margin-top: 2em;
+                margin-bottom: 2em;
+                overflow:visible;
+                outline-offset:1em;
+            }
+            div.outer-boxes.outer-boxes-margin-lr{
+
+            }
+        </STYLE>
+    </HEAD>
+<BODY>
+<UL>
+   <div class="out-systle outer-boxes outer-boxes-margin">
+        <div class="inner-systle inner-boxes inner-margin">
+            <span class="out-margin">Div Innner Div Innner</span>
+            <span class="out-margin">Div Innner</span>
+            <span class="out-margin">Div Innner</span>
+            <span class="out-margin">Div Innner</span></div>
+   </div>
+
+    <div class="out-systle outer-boxes outer-boxes-margin">
+        <div class="inner-systle inner-boxes inner-margin">
+            <p class="out-margin">Div Innner</p>
+            <p class="out-margin">Div Innner</p>
+        </div>
+    </div>
+
+    <div class="inner-systle inner-boxes inner-margin">
+        Test
+    </div>
+</UL>
+</BODY>
+</HTML>
+
+</HTML>
+
+
+

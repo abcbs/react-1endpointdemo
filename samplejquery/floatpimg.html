@@ -3,141 +3,32 @@
 <head>
     <meta charset="utf-8" />
     <STYLE type="text/css">
-        /**
+
         BODY, P, IMG { margin: 2em }
-        **/
+
         img.icon {
             float: left;
             margin-left: 1em;
-            border: dashed #ceff35;
+            width: 10em;
         }
         p.padding{
-            border: dotted;
-            padding: 1em;
-            clear: left
-        }
-
-        div.item {
-            font-size: 14px;
-            text-align: left;;
-            border: 1px solid;
-            padding-top: 1em;
-            padding-bottom: 1em;
-            margin-top: 1em ;
-            width:20em;
-            margin-right: 8em ;
-            line-height: 2em;
-
-        }
-        div.item img {
-            float: left;
-            margin-top: -1em;
-            margin-left:1em;
-            padding-right: 1em;
-            width: 5em;
-            height: 5em;
-            padding-top: 1em;
-
-        }
-        /**
-        div.item {border: 1px solid; padding: 5px;}
-        div.item img {float: left; margin: 5px;}
-        **/
-        div.clearer {
-            clear: left;
-        }
-        .clearfix:before,
-        .clearfix:after {
-            content:"";
-            display:table;
-        }
-        .clearfix:after {
-            clear:both;
-            overflow:hidden;
-        }
-        .clearfix {
-            zoom:1; /* IE < 8 */
-        }
-
-        .demo {
-            width: 120px;
-            height: 40px;
-            border: 1px solid #dec3ff;
-        }
-        .demotop {
-            width: 600px;
-            height: 40px;
-            border: 1px solid #4eaa2d;
-        }
-        .demoFloat {
-            background: #e2f432;
-            margin: 0;
-        }
-        .demoC {
-            background: orange;
-        }
-        .demoD {
-            background: lime;
-            border: 2px solid blue;
-        }
-
-        .demoB {
-            float: left;
-        }
-        .demoC {
-            float: right;
-        }
-        .demoD {
-            float: left;
-        }
-        .clear {
-            clear:both;/*主要使用这个属性来清除浮动*/
-            /*为了不让ie具有一定的空间，个人建议加上下面三个属性*/
-            height: 0;
-            line-height: 0;
-            font-size: 0;
-
+            //clear: both;
         }
 
     </STYLE>
 </HEAD>
 <BODY>
-
-<P>a<SPAN style="float: right">b</SPAN></P>
-
-<div class="demotop A">
-    <div class="demo demoB demoFloat">float left B</div>
-    <div class="demo demoC demoFloat">float right C</div>
-    <div class="demo demoD demoFloat">not float D</div>
-
-</div>
-
-
-<div class="item">
-    <img src="nems.jpg" >
-    <span> Widget 6144
-    <br>$39.95
-    </span>
-
-    <div class="clearer"> </div>
-</div>
-<div class="item">
-    <img src="nems.jpg" alt="" />
-    Widget 6145
-    <br>$44.95
-    <div class="clearer"> </div>
-</div>
-
-<P class="padding">
+<IMG  class="icon" src=pager-preview.011.jpeg>
+<P >
     Some sample text that has no other Some sample text that has no other
     Some sample text that has no other Some sample text that has no other
     Some sample text that has no other Some sample text that has no other
     Some sample text that has no other Some sample text that has no other.
-    <IMG  class="icon" src=nems.jpg>
     that has no other  that has no other  that has no other
  </P>
 
 <P class="padding">
+<P >
     that has no other  that has no other  that has no other
     that has no other  that has no other  that has no other
     that has no other  that has no other  that has no other

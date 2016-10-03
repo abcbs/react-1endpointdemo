@@ -71,9 +71,11 @@
       Plugin.call(actives, 'hide');
       activesData || actives.data('bs.collapse', null)
     }
-
+    //尺寸
     var dimension = this.dimension();
-
+    //CSS中的设置
+    //collapse中的display为none
+    //collapsing为position: relative;
     this.$element
       .removeClass('collapse')
       .addClass('collapsing')[dimension](0)
@@ -84,20 +86,22 @@
       .attr('aria-expanded', true);
 
     this.transitioning = 1;
-
+    //删除折叠中collapsing样式，collapsing中的display设置值为none，即不显示
+    //collapse in的display为block
     var complete = function () {
       this.$element
         .removeClass('collapsing')
         .addClass('collapse in')[dimension]('');
       this.transitioning = 0;
+      //触发折叠事件
       this.$element
-        .trigger('shown.bs.collapse')
+        .trigger('shown.bs.collapse');
     };
-
+    //元素不支持动态时转移时
     if (!$.support.transition) return complete.call(this);
 
     var scrollSize = $.camelCase(['scroll', dimension].join('-'));
-
+    //在代理中使用此值
     this.$element
       .one('bsTransitionEnd', $.proxy(complete, this))
       .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
@@ -114,7 +118,8 @@
     var dimension = this.dimension();
 
     this.$element[dimension](this.$element[dimension]())[0].offsetHeight;
-
+    //增加CSS的类collapsing也就是none
+    //collapse in的display为block
     this.$element
       .addClass('collapsing')
       .removeClass('collapse in')
@@ -244,8 +249,9 @@
     //如果缓存数据存在则执行toggle，否则在本元素中执行data方法
     var option  = data ? 'toggle' : $this.data();
     //在目标元素调用Plugin，option为
-      //toggle:"collapse"
-      //target:"#example-navbar-collapse"
+     // toggle:"collapse"
+    //target:"#example-navbar-collapse"
+    //文档中绑定  
     Plugin.call($target, option);
   });//on
 
