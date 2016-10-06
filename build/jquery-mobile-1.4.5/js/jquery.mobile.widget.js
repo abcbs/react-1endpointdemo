@@ -22,8 +22,9 @@ $.extend( $.Widget.prototype, {
 			elem = this.element[ 0 ],
 			options = {};
 
-		//
+		//elem中没有缺省属性defaults
 		if ( !$.mobile.getAttribute( elem, "defaults" ) ) {
+			//
 			for ( option in this.options ) {
 				value = $.mobile.getAttribute( elem, option.replace( rcapitals, replaceFunction ) );
 

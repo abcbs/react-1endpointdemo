@@ -54,16 +54,19 @@ div.ui-mobile-viewport {
 .ui-page {
 	outline: none;/*对象外的线条轮廓*/
 }
+
 .ui-mobile .ui-page-active {/*类class内的ui-page-active，即类ui-mobile内子类ui-page-active*/
 	display: block;/*为块元素，非内链*/
 	overflow: visible;/*溢出时可见*/
 	overflow-x: hidden;/*x方向溢出时隐藏*/
 }
+
 @media screen and (orientation: portrait) {
 	.ui-mobile .ui-page {/*页面高度*/
 		min-height: 420px;
 	}
 }
+
 @media screen and (orientation: landscape) {
 	.ui-mobile .ui-page {/*页面高度*/
 		min-height: 300px;
@@ -88,6 +91,7 @@ div.ui-mobile-viewport {
 .ui-loading .ui-loader {
 	display: block;
 }
+/*Loader*/
 .ui-loader {
 	display: none;
 	z-index: 9999999;
@@ -96,6 +100,7 @@ div.ui-mobile-viewport {
 	left: 50%;
 	border:0;
 }
+
 .ui-loader-default {
 	background: none;
 	filter: Alpha(Opacity=18);
@@ -105,6 +110,7 @@ div.ui-mobile-viewport {
 	margin-left: -1.4375em;
 	margin-top: -1.4375em;
 }
+
 .ui-loader-verbose {
 	width: 12.5em;
 	filter: Alpha(Opacity=88);
@@ -115,6 +121,7 @@ div.ui-mobile-viewport {
 	margin-top: -2.6875em;
 	padding: .625em;
 }
+
 .ui-loader-default h1 {
 	font-size: 0;
 	width: 0;
@@ -126,8 +133,9 @@ div.ui-mobile-viewport {
 	margin: 0;
 	text-align: center;
 }
+
 .ui-loader .ui-icon-loading {
-	background-color: #000;
+	background-color: rgba(167, 224, 102, 0.07);
 	display: block;
 	margin: 0;
 	width: 2.75em;
@@ -136,6 +144,7 @@ div.ui-mobile-viewport {
 	-webkit-border-radius: 2.25em;
 	border-radius: 2.25em;
 }
+
 .ui-loader-verbose .ui-icon-loading {
 	margin: 0 auto .625em;
 	filter: Alpha(Opacity=75);
@@ -392,7 +401,8 @@ button.ui-btn-inline,
 .ui-footer button.ui-btn {
 	width: auto;
 }
-/* Firefox adds a 1px border in a button element. We negate this to make sure they have the same height as other buttons in controlgroups. */
+/* Firefox adds a 1px border in a button element.
+We negate this to make sure they have the same height as other buttons in controlgroups. */
 button.ui-btn::-moz-focus-inner {
 	border: 0;
 }
@@ -424,7 +434,9 @@ button.ui-btn-icon-notext,
 	clip: rect(1px,1px,1px,1px);
 }
 
-/* Used for hiding elements by the filterable widget. You can also use this class to hide list items or buttons in controlgroups; this ensures correct corner styling. */
+/* Used for hiding elements by the filterable widget.
+You can also use this class to hide list items or buttons in controlgroups;
+this ensures correct corner styling. */
 .ui-screen-hidden {
 	display: none !important;
 }

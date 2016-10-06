@@ -59,7 +59,7 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 		}
 	};
 	// extend with the existing constructor to carry over any static properties
-	//类继承
+	//使用JQuery实现构造函数的基础，并且重新对象_proto
 	$.extend( constructor, existingConstructor, {
 		version: prototype.version,
 		// copy the object used to create the prototype in case we need to
@@ -69,11 +69,12 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 		// redefined after a widget inherits from it
 		_childConstructors: []
 	});
-
+	//实例化基类
 	basePrototype = new base();
 	// we need to make the options hash a property directly on the new instance
 	// otherwise we'll modify the options hash on the prototype that we're
 	// inheriting from
+	//获取基类中属性获取选项
 	basePrototype.options = $.widget.extend( {}, basePrototype.options );
 	//每个原型方法调用
 	$.each( prototype, function( prop, value ) {//遍历prototype
@@ -81,7 +82,7 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 			proxiedPrototype[ prop ] = value;
 			return;
 		}//当是函数是，则取出原型的属性和值
-		proxiedPrototype[ prop ] = (function() {
+		proxiedPrototype[ prop ] = (function() {//对象属性
 			var _super = function() {
 					return base.prototype[ prop ].apply( this, arguments );
 				},
@@ -92,7 +93,7 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 				var __super = this._super,
 					__superApply = this._superApply,
 					returnValue;
-
+				//重新super方法
 				this._super = _super;
 				this._superApply = _superApply;
 				//执行原型的方法，并且返回作为实例的属性值
@@ -103,9 +104,9 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 
 				return returnValue;
 			};
-		})();//获取执行的当前值
+		})();//获取执行的当前值，()()方式下this为全局值
 	});
-	//原型构造方法
+	//当前原型扩展示例方法
 	constructor.prototype = $.widget.extend( basePrototype, 
 		{
 		// TODO: remove support for widgetEventPrefix
@@ -119,7 +120,7 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 			namespace: namespace,
 			widgetName: name,
 			widgetFullName: fullName
-		});
+		});//
 	//原型构造函数定义结束
 	// If this widget is being redefined then we need to find all widgets that
 	// are inheriting from it and redefine all of them so that they inherit from
@@ -148,6 +149,7 @@ $.widget = function( name, base, prototype ) {//小部件构造函数
 };
 
 $.widget.extend = function( target ) {
+	//取参数的第二个作为之后的属性或者方法
 	var input = slice.call( arguments, 1 ),
 		inputIndex = 0,
 		inputLength = input.length,
@@ -252,7 +254,9 @@ $.Widget.prototype = {
 		this.focusable = $();
 
 		if ( element !== this ) {
+			//获取数据的cash
 			$.data( element, this.widgetFullName, this );
+			
 			this._on( true, this.element, {
 				remove: function( event ) {
 					if ( event.target === element ) {
@@ -386,6 +390,7 @@ $.Widget.prototype = {
 			instance = this;
 
 		// no suppressDisabledCheck flag, shuffle arguments
+		//类型不是Boolean值
 		if ( typeof suppressDisabledCheck !== "boolean" ) {
 			handlers = element;
 			element = suppressDisabledCheck;
@@ -402,7 +407,7 @@ $.Widget.prototype = {
 			element = delegateElement = $( element );
 			this.bindings = this.bindings.add( element );
 		}
-
+		//运行事件
 		$.each( handlers, function( event, handler ) {
 			function handlerProxy() {
 				// allow widgets to customize the disabled handling
@@ -422,13 +427,21 @@ $.Widget.prototype = {
 				handlerProxy.guid = handler.guid =
 					handler.guid || handlerProxy.guid || $.guid++;
 			}
-
+			//\w 任何单字字符, 等价于[a-zA-Z0-9]
+			//\s 任何空白符
+			//. 除了换行符之外的任意字符
+			//^ 匹配的是字符的开头,在多行检索中,匹配的是一行的开头
+			//$ 匹配的是字符的结尾,在多行检索中,匹配的是一行的结尾
+			//[^...] 不在括号之中的任意字符
 			var match = event.match( /^(\w+)\s*(.*)$/ ),
 				eventName = match[1] + instance.eventNamespace,
-				selector = match[2];
-			if ( selector ) {
+				selector = match[2];//匹配的第二部分
+			//绑定事件
+			if ( selector ) {//
+				//向匹配元素的当前或未来的子元素添加处理程序
 				delegateElement.delegate( selector, eventName, handlerProxy );
 			} else {
+				//向元素添加事件处理程序
 				element.bind( eventName, handlerProxy );
 			}
 		});
@@ -494,7 +507,7 @@ $.Widget.prototype = {
 				}
 			}
 		}
-
+		//激活事件
 		this.element.trigger( event, data );
 		return !( $.isFunction( callback ) &&
 			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
@@ -519,18 +532,20 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 			options = { duration: options };
 		}
 		hasOptions = !$.isEmptyObject( options );
-		options.complete = callback;
+		options.complete = callback;//在参数中增加回调函数
 		if ( options.delay ) {
 			element.delay( options.delay );
 		}
+		//绑定默认动画事件
 		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
 			element[ method ]( options );
 		} else if ( effectName !== method && element[ effectName ] ) {
+			//
 			element[ effectName ]( options.duration, options.easing, callback );
 		} else {
 			element.queue(function( next ) {
 				$( this )[ method ]();
-				if ( callback ) {
+				if ( callback ) {//调用回调方法
 					callback.call( element[ 0 ] );
 				}
 				next();

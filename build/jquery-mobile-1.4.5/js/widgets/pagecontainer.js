@@ -27,6 +27,7 @@ define( [
 		initSelector: false,
 
 		_create: function() {
+			//执行beforecreate方法
 			this._trigger( "beforecreate" );
 			this.setLastScrollEnabled = true;
 
@@ -45,12 +46,15 @@ define( [
 			// TODO consider moving the navigation handler OUT of widget into
 			//      some other object as glue between the navigate event and the
 			//      content widget load and change methods
+			//绑定navigate事件
 			this._on( this.window, { navigate: "_filterNavigateEvents" });
 
 			// TODO move from page* events to content* events
+			//绑定_afterContentChange事件
 			this._on({ pagechange: "_afterContentChange" });
 
 			// handle initial hashchange from chrome :(
+			//执行一次navigate事件
 			this.window.one( "navigate", $.proxy(function() {
 				this.setLastScrollEnabled = true;
 			}, this));
@@ -89,8 +93,8 @@ define( [
 			// window or in the case of touch overflow the element touch overflow
 			this._on( this.window, { scrollstop: "_delayedRecordScroll" });
 		},
-
-		_recordScroll: function() {//滚动
+		//滚动
+		_recordScroll: function() {
 			// this barrier prevents setting the scroll value based on
 			// the browser scrolling the window based on a hashchange
 			if ( !this.setLastScrollEnabled ) {
@@ -319,7 +323,7 @@ define( [
 		},
 
 		_changeContent: function( to, opts ) {
-			$.mobile.changePage( to, opts );
+			$.mobile.changePage( to, opts );//定义则
 		},
 
 		_getBase: function() {
@@ -386,6 +390,7 @@ define( [
 			return page;
 		},
 
+		//LiuJQ
 		_getLoader: function() {
 			return $.mobile.loading();
 		},
@@ -480,6 +485,7 @@ define( [
 			( page || this.element ).trigger( deprecatedEvent, data );
 
 			// use the widget trigger method for the new content* event
+			//页面转换
 			this._trigger( name, newEvent, data );
 
 			return {
@@ -558,7 +564,7 @@ define( [
 				if ( settings.showLoadMsg ) {
 					this._hideLoading();
 				}
-
+				//LiuJQ
 				deferred.resolve( absUrl, settings, content );
 			}, this);
 		},
@@ -650,14 +656,14 @@ define( [
 			// users can bind to .done on the promise
 			if ( content.length && !settings.reload ) {//读到内容返回
 				this._enhance( content, settings.role );
+				//LiuJQ
 				deferred.resolve( absUrl, settings, content );
-
 				//if we are reloading the content make sure we update
 				// the base if its not a prefetch
 				if ( !settings.prefetch ) {
 					this._getBase().set(url);
 				}
-
+				//LiuJQ
 				return deferred.promise();
 			}
 
@@ -679,17 +685,14 @@ define( [
 				pblEvent.event.isDefaultPrevented() ) {
 				return deferred.promise();
 			}
-
 			if ( settings.showLoadMsg ) {
 				this._showLoading( settings.loadMsgDelay );
 			}
-
 			// Reset base to the default document base.
 			// only reset if we are not prefetching
 			if ( settings.prefetch === undefined ) {
 				this._getBase().reset();
 			}
-
 			if ( !( $.mobile.allowCrossDomainPages ||
 				$.mobile.path.isSameDomain($.mobile.path.documentUrl, absUrl ) ) ) {
 				deferred.reject( absUrl, settings );
@@ -697,6 +700,7 @@ define( [
 			}
 
 			// Load the new content.
+			//LiuJQ
 			$.ajax({
 				url: fileUrl,
 				type: settings.type,
@@ -767,7 +771,6 @@ define( [
 				//trigger before show/hide events
 				// TODO deprecate nextPage in favor of next
 				this._triggerWithDeprecated( prefix + "hide", {
-
 					// Deprecated in 1.4 remove in 1.5
 					nextPage: to,
 					toPage: to,
@@ -787,25 +790,29 @@ define( [
 		_cssTransition: function( to, from, options ) {
 			var transition = options.transition,
 				reverse = options.reverse,
-				deferred = options.deferred,
+				deferred = options.deferred,//
 				TransitionHandler,
 				promise;
-
+			//触发变化事件
 			this._triggerCssTransitionEvents( to, from, "before" );
 
 			// TODO put this in a binding to events *outside* the widget
+			//执行loader.hide
 			this._hideLoading();
-
+			//转移实现
 			TransitionHandler = this._getTransitionHandler( transition );
-
+			//转换
 			promise = ( new TransitionHandler( transition, reverse, to, from ) ).transition();
-
+			//转换之后
 			promise.done( $.proxy( function() {
+				//触发CSS改变
 				this._triggerCssTransitionEvents( to, from );
 			}, this ));
 
 			// TODO temporary accomodation of argument deferred
+			//LiuJQ
 			promise.done(function() {
+				//转移之后调用
 				deferred.resolve.apply( deferred, arguments );
 			});
 		},
@@ -813,6 +820,7 @@ define( [
 		_releaseTransitionLock: function() {
 			//release transition lock so navigation is free again
 			isPageTransitioning = false;
+			//从队列中弹出并变化页面
 			if ( pageTransitionQueue.length > 0 ) {
 				$.mobile.changePage.apply( null, pageTransitionQueue.pop() );
 			}
@@ -831,7 +839,7 @@ define( [
 			// life cycle See issue #5085
 			settings.target = to;
 			settings.deferred = $.Deferred();
-
+			//LiuJQ
 			this.load( to, settings );
 
 			settings.deferred.done($.proxy(function( url, options, content ) {
@@ -840,7 +848,7 @@ define( [
 				// store the original absolute url so that it can be provided
 				// to events in the triggerData of the subsequent changePage call
 				options.absUrl = triggerData.absUrl;
-
+				//LiuJQ
 				this.transition( content, triggerData, options );
 			}, this));
 
@@ -875,6 +883,7 @@ define( [
 			}
 
 			// Let listeners know we're about to change the current page.
+			//LiuJQ
 			returnEvents = this._triggerWithDeprecated( "beforechange", triggerData );
 
 			// If the default behavior is prevented, stop here!
@@ -885,7 +894,11 @@ define( [
 
 			return true;
 		},
-
+		/**
+		 *变更方法
+		 * @param to
+		 * @param options
+         */
 		change: function( to, options ) {
 			// If we are in the midst of a transition, queue the current request.
 			// We'll call changePage() once we're done with the current transition
@@ -921,9 +934,10 @@ define( [
 				// entering this method while we are in the midst of loading a page
 				// or transitioning.
 				isPageTransitioning = true;
-
+				//loadUrl LiuJQ
 				this._loadUrl( to, triggerData, settings );
 			} else {
+				//LiuJQ
 				this.transition( to, triggerData, settings );
 			}
 		},
@@ -1020,6 +1034,7 @@ define( [
 			}
 
 			// We need to make sure the page we are given has already been enhanced.
+			//Page的格式化
 			toPage.page({ role: settings.role });
 
 			// If the changePage request was sent from a hashChange event, check to
@@ -1145,16 +1160,19 @@ define( [
 
 			// If we're navigating back in the URL history, set reverse accordingly.
 			settings.reverse = settings.reverse || historyDir < 0;
-
+			//异步转换
 			cssTransitionDeferred = $.Deferred();
-
+			//本页方法
 			this._cssTransition(toPage, fromPage, {
 				transition: settings.transition,
 				reverse: settings.reverse,
 				deferred: cssTransitionDeferred
 			});
-
-			cssTransitionDeferred.done($.proxy(function( name, reverse, $to, $from, alreadyFocused ) {
+			//执行_cssTransition之后，转换完成时，在代理中实现
+			cssTransitionDeferred.done($.proxy(
+				function( name, reverse, $to, $from, alreadyFocused )
+				{
+				//执行
 				$.mobile.removeActiveLinkClass();
 
 				//if there's a duplicateCachedPage, remove it from the DOM now that it's hidden
@@ -1164,12 +1182,14 @@ define( [
 
 				// despite visibility: hidden addresses issue #2965
 				// https://github.com/jquery/jquery-mobile/issues/2965
-				if ( !alreadyFocused ) {
+				if ( !alreadyFocused ) {//
 					$.mobile.focusPage( toPage );
 				}
-
+				//是否页面锁
 				this._releaseTransitionLock();
+				//触发转移
 				this._triggerWithDeprecated( "transition", triggerData );
+				//触发change
 				this._triggerWithDeprecated( "change", triggerData );
 			}, this));
 		},
@@ -1182,9 +1202,12 @@ define( [
 		return closestBase || $.mobile.path.documentBase.hrefNoHash;
 		}
 	});
-
+	//mobile.pagecontainer over
 	// The following handlers should be bound after mobileinit has been triggered
 	// the following deferred is resolved in the init file
+	//新建一个deferred对象
+	//在mobileinit之后触发
+	//在初始化文件中解决它
 	$.mobile.navreadyDeferred = $.Deferred();
 
 	//these variables make all page containers use the same queue and only navigate one at a time

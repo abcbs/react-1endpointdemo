@@ -1711,6 +1711,7 @@ button.ui-btn-icon-notext,
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+/*0表示完全透明*/
 .ui-page-pre-in {
 	opacity: 0;
 }

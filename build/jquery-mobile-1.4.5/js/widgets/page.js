@@ -35,7 +35,7 @@ $.extend( $.widget, originalWidget );
 $.mobile.document.on( "create", function( event ) {
 	$( event.target ).enhanceWithin();
 });
-
+/////////////////////////////////////////////////////////
 $.widget( "mobile.page", {
 	options: {
 		theme: "a",
@@ -49,12 +49,6 @@ $.widget( "mobile.page", {
 		enhanced: false
 	},
 
-	// DEPRECATED for > 1.4
-	// TODO remove at 1.5
-	_createWidget: function() {
-		$.Widget.prototype._createWidget.apply( this, arguments );
-		this._trigger( "init" );
-	},
 
 	_create: function() {
 		// If false is returned by the callbacks do not create the page
@@ -146,8 +140,16 @@ $.widget( "mobile.page", {
 	_handlePageBeforeShow: function(/* e */) {
 		this.setContainerBackground();
 	},
+
+	// DEPRECATED for > 1.4
+	// TODO remove at 1.5
+	_createWidget: function() {
+		$.Widget.prototype._createWidget.apply( this, arguments );
+		this._trigger( "init" );
+	},
 	// Deprecated in 1.4 remove in 1.5
 	removeContainerBackground: function() {
+		//沿 DOM 树向上遍历，直到找到已应用选择器的一个匹配为止。 LiuJQ
 		this.element.closest( ":mobile-pagecontainer" ).pagecontainer({ "theme": "none" });
 	},
 	// Deprecated in 1.4 remove in 1.5
@@ -177,6 +179,7 @@ $.widget( "mobile.page", {
 			.join( ", " ) );
 	}
 });
+//$.widget( "mobile.page" Over
 })( jQuery );
 //>>excludeStart("jqmBuildExclude", pragmas.jqmBuildExclude);
 });

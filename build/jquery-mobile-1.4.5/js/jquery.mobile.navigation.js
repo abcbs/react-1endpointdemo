@@ -21,6 +21,7 @@ define( [
 (function( $, undefined ) {
 
 		// resolved on domready
+		//新建一个deferred对象
 	var domreadyDeferred = $.Deferred(),
 
 		// resolved and nulled on window.load()
@@ -28,7 +29,6 @@ define( [
 
 		// function that resolves the above deferred
 		pageIsFullyLoaded = function() {
-
 			// Resolve and null the deferred
 			loadDeferred.resolve();
 			loadDeferred = null;
@@ -122,7 +122,7 @@ define( [
 	};
 
 	// Exposed $.mobile methods
-
+	//页面转移
 	$.mobile.changePage = function( to, options ) {
 		$.mobile.pageContainer.pagecontainer( "change", to, options );
 	};
@@ -235,7 +235,7 @@ define( [
 				}
 			}
 		});
-
+		//.mobile.document.delegate over
 		//add active state on vclick
 		$.mobile.document.bind( "vclick", function( event ) {
 			var $btn, btnEls, target = event.target, needClosest = false;
@@ -417,7 +417,6 @@ define( [
 			$.mobile.changePage( href, { transition: transition, reverse: reverse, role: role, link: $link } );
 			event.preventDefault();
 		});
-		//click over
 		//prefetch pages when anchors with data-prefetch are encountered
 		$.mobile.document.delegate( ".ui-page", "pageshow.prefetch", function() {
 			var urls = [];
@@ -432,11 +431,8 @@ define( [
 				}
 			});
 		});
-		//delegate over
-		// TODO ensure that the navigate binding in the content widget happens at the right time
 		//进入具体页面
 		$.mobile.pageContainer.pagecontainer();
-
 		//set page min-heights to be device specific
 		$.mobile.document.bind( "pageshow", function() {
 
@@ -453,10 +449,14 @@ define( [
 
 	};//navreadyDeferred done callback
 	//_registerInternalEvents
-	$( function() { domreadyDeferred.resolve(); } );
+	$( function() {
+		domreadyDeferred.resolve();
+	} );
 
 	// Account for the possibility that the load event has already fired
-	if ( document.readyState === "complete" ) {//完成时执行异步处理，等待页面装载执行when方法
+	//文档装配完毕，执行事件处理
+	//完成时执行异步处理，等待页面装载执行when方法
+	if ( document.readyState === "complete" ) {
 		pageIsFullyLoaded();
 	} else {
 		$.mobile.window.load( pageIsFullyLoaded );

@@ -63,6 +63,7 @@ define( [ "jquery",
 			if ( !this.sequential ) {
 				this.$to.addClass( $.mobile.activePageClass );
 			}
+			//LiuJQ 
 			this.deferred.resolve( this.name, this.reverse, this.$to, this.$from, true );
 		},
 
@@ -94,7 +95,7 @@ define( [ "jquery",
 		},
 
 		startIn: function( screenHeight, reverseClass, none, preventFocus ) {
-			this.hideIn(function() {
+			this.hideIn(function() {//LiuJQ
 				this.$to.addClass( $.mobile.activePageClass + this.toPreClass );
 
 				// Send focus to page as it is now display: block
@@ -105,16 +106,16 @@ define( [ "jquery",
 				// Set to page height
 				this.$to.height( screenHeight + this.toScroll );
 
-                if ( !none ) {
+                if ( !none ) {//页面滚动
                     this.scrollPage();
                 }
 			});
-
+			//LiuJQ
 			this.$to
 				.removeClass( this.toPreClass )
 				.addClass( this.name + " in " + reverseClass );
 
-			if ( !none ) {
+			if ( !none ) {//动画完成
 				this.$to.animationComplete( $.proxy(function() {
 					this.doneIn();
 				}, this ));
@@ -135,6 +136,7 @@ define( [ "jquery",
 		},
 
 		toggleViewportClass: function() {
+			//LiuJQ toggleClass
 			$.mobile.pageContainer.toggleClass( "ui-mobile-viewport-transitioning viewport-" + this.name );
 		},
 
@@ -149,14 +151,14 @@ define( [ "jquery",
 				screenHeight = $.mobile.getScreenHeight(),
 				maxTransitionOverride = $.mobile.maxTransitionWidth !== false &&
 					$.mobile.window.width() > $.mobile.maxTransitionWidth;
-
+			//转换操作
 			this.toScroll = $.mobile.navigate.history.getActive().lastScroll || $.mobile.defaultHomeScroll;
 
 			none = !$.support.cssTransitions || !$.support.cssAnimations ||
 				maxTransitionOverride || !this.name || this.name === "none" ||
 				Math.max( $.mobile.window.scrollTop(), this.toScroll ) >
 					$.mobile.getMaxScrollForTransition();
-
+			//激活
 			this.toggleViewportClass();
 
 			if ( this.$from && !none ) {
@@ -164,7 +166,7 @@ define( [ "jquery",
 			} else {
 				this.doneOut( screenHeight, reverseClass, none, true );
 			}
-
+			//异步转换完毕
 			return this.deferred.promise();
 		}
 	});

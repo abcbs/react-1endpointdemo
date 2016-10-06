@@ -322,7 +322,7 @@ define( [ "jquery", "./jquery.mobile.ns", "jquery-ui/jquery.ui.core" ], function
 	$.addDependents = function( nativeElement, newDependents ) {
 		var element = $( nativeElement ),
 			dependents = element.jqmData( "dependents" ) || $();
-
+		//jqmData的作用
 		element.jqmData( "dependents", $( dependents ).add( newDependents ) );
 	};
 

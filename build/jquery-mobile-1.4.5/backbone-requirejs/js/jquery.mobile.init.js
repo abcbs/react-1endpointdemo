@@ -27,6 +27,8 @@ define([
 
 	// trigger mobileinit event - useful hook for configuring $.mobile settings before they're used
 	//触发mobileinit事件，在$.mobile settings使用之前，配置 $.mobile settings的钩子方法
+	//该事件由用户代码定义，
+	// 即在JQuery Moble组件装载之前应当初始化全局项
 	$( window.document ).trigger( "mobileinit" );
 
 	// support conditions
@@ -66,7 +68,8 @@ define([
 				hashPage = hash ? document.getElementById( hash ) : undefined;
 
 			// if no pages are found, create one with body's inner html
-			if ( !$pages.length ) {//
+			if ( !$pages.length ) {//Body的CSS样式
+				//包裹的是元素内部
 				$pages = $( "body" ).wrapInner( "<div data-" + $.mobile.ns + "role='page'></div>" ).children( 0 );
 			}
 
@@ -86,19 +89,21 @@ define([
 
 			// define page container
 			$.mobile.pageContainer = $.mobile.firstPage
-				.parent()
+				.parent()//获取当前DIV的父容器
 				.addClass( "ui-mobile-viewport" )//父容器中加入类,即body
 				.pagecontainer();//$.mobile.pageContainer为Init
 
 			// initialize navigation events now, after mobileinit has occurred and the page container
 			// has been created but before the rest of the library is alerted to that fact
-			//异步操作 LiuJQ
+			//异步操作
+			//在mobileinit触发， 页面容器创建之后，初始化导航事件
 			$.mobile.navreadyDeferred.resolve();
 
 			// alert listeners that the pagecontainer has been determined for binding
 			// to events triggered on it
 			//激活pagecontainercreate事件
-			$window.trigger( "pagecontainercreate" );
+			//注释掉此行 LiuJQ
+			//$window.trigger( "pagecontainercreate" );
 
 			// cue page loading message
 			//当前页装载信息
@@ -124,6 +129,7 @@ define([
 				}
 				//改变页面
 				//$.mobile.changePage在navigation中定义
+				//LiuJQ
 				$.mobile.changePage( $.mobile.firstPage, {
 					transition: "none",
 					reverse: true,
@@ -134,6 +140,7 @@ define([
 				// trigger hashchange or navigate to squash and record the correct
 				// history entry for an initial hash path
 				if ( !$.event.special.navigate.isPushStateEnabled() ) {
+					//触发hashchange事件
 					$window.trigger( "hashchange", [true] );
 				} else {
 					// TODO figure out how to simplify this interaction with the initial history entry

@@ -10,8 +10,14 @@ define( [ "jquery", "./jquery.mobile.ns" ], function( jQuery ) {
 (function( $, window, undefined ) {
 	var nsNormalizeDict = {},
 		oldFind = $.find,
-		rbrace = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/,
-		jqmDataRE = /:jqmData\(([^)]*)\)/g;
+		rbrace = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/, //\s\S 任何空白字符 任何非空白字符
+	    //以jqmData的任何字符，jqmData(),但是不包括)
+		//data-role="header"
+		//:jqmData(role='none'), :jqmData(role='nojs')
+		//data-role="footer" data-position="fixed" data-id="footernav"
+		//在:jqmData()的括号之内，([^)]*不是以[开头
+		jqmDataRE = /:jqmData\(([^)]*)\)/g;//^表示匹配开头()  ([^)]*) 匹配0个或者多个非)开头的字符
+											//[^...]表示不在中括号[]之中的字符
 
 	$.extend( $.mobile, {
 
@@ -104,10 +110,17 @@ define( [ "jquery", "./jquery.mobile.ns" ], function( jQuery ) {
 	$.jqmRemoveData = function( elem, prop ) {
 		return $.removeData( elem, $.mobile.nsNormalize( prop ) );
 	};
-
+	//JQuery find LiuJQ
 	$.find = function( selector, context, ret, extra ) {
 		if ( selector.indexOf( ":jqmData" ) > -1 ) {
-			selector = selector.replace( jqmDataRE, "[data-" + ( $.mobile.ns || "" ) + "$1]" );
+			//HTML:<div data-role="page" id="home">
+			// 正则表达式:/:jqmData\(([^)]*)\)/g; 在:jqmData()的括号之内，([^)]*不是以[开头
+			// $1...$9 如果它(们)存在，是匹配到的子串
+			//init.js: $pages = $( ":jqmData(role='page'), :jqmData(role='dialog')" ),
+			//执行selector = selector.replace( jqmDataRE, selectorSource);之后的selector
+			//                     "[data-role='page'], [data-role='dialog']"
+			var selectorSource="[data-" + ( $.mobile.ns || "" ) + "$1]";
+			selector = selector.replace( jqmDataRE, selectorSource);
 		}
 
 		return oldFind.call( this, selector, context, ret, extra );
